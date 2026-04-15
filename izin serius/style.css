@@ -1,0 +1,354 @@
+*{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'jost', sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10%   ;
+}
+
+.logo img {
+    max-width: 120px; 
+    height: auto;
+}
+.navmenu{
+    display: flex;
+}
+.navmenu a{
+    color: #000000;
+    font-size: 16px;
+    text-transform: capitalize;
+    padding: 10px 20px;
+    font-weight: 400;
+    transition: all .42s ease;
+}
+.navmenu a:hover {
+    color: #ff0000;
+}
+.icon{
+    display: flex;
+    align-items: center;
+}
+.icon i{
+    margin-right: 20px;
+    color: #2c2c2c;
+    font-size: 25px;
+    font-weight: 400;
+    transition: all .42s ease;
+}
+.icon i:hover {
+    transform: scale(1.1);
+    color: #ff3d00;
+}
+#menu-icon {
+    font-size: 35px;
+    color: #000000;
+    z-index: 10001;
+    cursor: pointer;
+}
+section {
+    padding: 5% 10%;
+}
+.main-home {
+    width: 100%;
+    height: 100vh;
+    background-image: url(banner.png);
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    align-items: center;
+}
+.main-text h5 {
+    color: #b0e1af;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.main-text h1 {
+    font-size: 65px;
+    color: #000000;
+    text-transform: capitalize;
+    line-height: 1.1;
+    font-weight: 600;
+    margin: 6px 0 10px;
+}
+.main-text p {
+    font-size: 20px;
+    color: #000000;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+.main-btn   {
+    display: inline-block;
+    color: #111;
+    padding: 12px 25px;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 500;
+    transition: all .42s ease;
+    border: 2px solid #111;
+}
+.main-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+.main-btn i {
+    vertical-align: middle;
+}
+.down-arrow {
+    position: absolute;
+    top: 85%;
+    right: 11%;
+    transform: translateX(-50%);
+}
+.down i {
+    font-size: 30px;
+    color: #2c2c2c;
+    animation: down 1.5s linear infinite;
+    border : 2px solid #2c2c2c;
+    border-radius: 50px;
+    padding : 12px 12px;
+}
+.down:hover i {
+    background-color: #2c2c2c;
+    color: #fff;
+    transition: all .42s ease;
+}
+header.sticky {
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0 0 0 / 10%);
+    padding: 20px 10%;
+}
+.center-text h2{
+    text-align: center;
+    color: #111;
+    font-size: 36px;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+}
+.center-text span {
+    color: #ff3d00;
+}
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+.row {
+    background: #fff;
+    padding: 12px;
+    border-radius: 12px;
+    position: relative;
+    transition: all .3s ease;
+}
+
+.row:hover {
+    transform: translateY(-5px);
+}.row img {
+    width: 100%;
+    height: 300px;       
+    object-fit: cover;  
+    border-radius: 10px;
+}
+.add-cart {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #ff3d00;
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-cart:hover {
+    background: #000;
+}
+
+#toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #111;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
+    z-index: 9999;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.restock {
+    background: #ff3d00;
+    color: #fff;
+    font-style: oblique;
+}
+.ratting i {
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ratting i.active {
+    color: gold;
+}
+
+/* CARD PRODUCT */
+.row {
+    position: relative;
+    background: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.row:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.row img {
+    width: 100%;
+    border-radius: 10px;
+    transition: 0.4s ease;
+}
+
+.row:hover img {
+    transform: scale(1.08);
+}
+
+.heart-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.heart-icon i {
+    font-size: 22px;
+    color: #ccc;
+    transition: 0.3s;
+}
+
+.heart-icon i:hover {
+    color: red;
+    transform: scale(1.2);
+}
+
+.ratting i {
+    transition: 0.2s;
+}
+
+.ratting i:hover {
+    transform: scale(1.3);
+}
+
+.add-cart {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #111;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.add-cart::before {
+    content: "";
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+}
+
+.add-cart:hover::before {
+    left: 100%;
+}
+
+.add-cart:hover {
+    background: #ff3d00;
+}
+
+#toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #111;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 0.4s;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.navmenu a {
+    position: relative;
+}
+
+.navmenu a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #ff3d00;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.navmenu a:hover::after {
+    width: 100%;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.6s ease;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.products .row img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
