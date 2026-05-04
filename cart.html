@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart BVL</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Jost', sans-serif;
+    background: #f8f8f8;
+    margin: 0;
+}
+ .header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 10%;
+    background:#fff;
+    border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    transition:0.3s;
+}
+
+/* efek saat scroll */
+.header.scrolled{
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* logo */
+.logo img{
+    width:110px;
+}
+
+/* menu */
+.navmenu{
+    display:flex;
+    gap:30px;
+}
+
+.navmenu a{
+    text-decoration:none;
+    color:#111;
+    font-size:14px;
+    font-weight:500;
+    position:relative;
+    transition:0.3s;
+}
+
+/* underline animasi */
+.navmenu a::after{
+    content:"";
+    position:absolute;
+    width:0%;
+    height:2px;
+    background:#111;
+    left:0;
+    bottom:-5px;
+    transition:0.3s;
+}
+
+.navmenu a:hover::after{
+    width:100%;
+}
+
+.navmenu a:hover{
+    color:#000;
+}
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    padding: 30px 10%;
+}
+.cart-items {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+}
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.cart-item img {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+.cart-info { flex: 1; }
+.cart-info h4 { margin: 0; }
+.cart-info p { color: #777; }
+
+.remove {
+    color: red;
+    cursor: pointer;
+    font-size: 14px;
+}
+.summary {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+}
+.summary p {
+    display: flex;
+    justify-content: space-between;
+}
+.checkout {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.empty {
+    text-align: center;
+    color: #888;
+}
+.checkout-form input,
+.checkout-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.checkout-form button {
+    width: 100%;
+    padding: 12px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+<header class="header">
+    <a href="index.html" class="logo">
+        <img src="logo.png" alt="">
+    </a>
+
+    <nav class="navmenu">
+        <a href="index.html">HOME</a>
+        <a href="index.html#trending">PRODUCT</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+    </nav>
+</header>
+
+<div class="container">
+    
+    <div class="cart-items" id="cart-items"></div>
+
+    <div class="summary">
+
+        <div class="checkout-form">
+            <h3>Checkout</h3>
+            <input type="text" id="nama" placeholder="Nama Lengkap">
+            <input type="text" id="alamat" placeholder="Alamat Lengkap">
+            <input type="text" id="nohp" placeholder="No WhatsApp">
+
+            <select id="metode">
+                <option value="WA">WhatsApp</option>
+                <option value="COD">COD</option>
+                <option value="TRANSFER">Transfer</option>
+                <option value="E-WALLET">E-Wallet</option>
+            </select>
+
+            <button class="checkout" onclick="checkout()">Pesan Sekarang</button>
+        </div>
+
+        <h3>Ringkasan</h3>
+        <p><span>Total</span> <span id="total">Rp 0</span></p>
+        <button class="checkout" onclick="checkoutWA()">Checkout WhatsApp</button>
+    </div>
+
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let container = document.getElementById("cart-items");
+let totalEl = document.getElementById("total");
+
+// ✅ render cart
+function renderCart() {
+    container.innerHTML = "";
+
+    if (cart.length === 0) {
+        container.innerHTML = "<p class='empty'>Keranjang kosong 🛒</p>";
+        totalEl.innerText = "Rp 0";
+        return;
+    }
+
+    cart.forEach((item, index) => {
+        let div = document.createElement("div");
+        div.classList.add("cart-item");
+
+        div.innerHTML = `
+            <input type="checkbox" class="check-item" data-index="${index}">
+            <img src="${item.img}">
+            <div class="cart-info">
+                <h4>${item.name}</h4>
+                <p>${item.price}</p>
+                <span class="remove" onclick="removeItem(${index})">Hapus</span>
+            </div>
+        `;
+
+        container.appendChild(div);
+    });
+
+    updateTotal();
+}
+
+// ✅ hitung total dari yang dicentang
+function updateTotal() {
+    let checkboxes = document.querySelectorAll(".check-item");
+    let total = 0;
+
+    checkboxes.forEach(cb => {
+        if (cb.checked) {
+            let index = cb.dataset.index;
+            let price = parseInt(cart[index].price.replace(/[^\d]/g, ""));
+            total += price;
+        }
+    });
+
+    totalEl.innerText = "Rp " + total.toLocaleString();
+}
+
+// ✅ event checkbox
+document.addEventListener("change", function(e) {
+    if (e.target.classList.contains("check-item")) {
+        updateTotal();
+    }
+});
+
+// ✅ hapus item
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+}
+
+// ✅ ambil item terpilih
+function getSelectedItems() {
+    let checkboxes = document.querySelectorAll(".check-item");
+    let selected = [];
+
+    checkboxes.forEach(cb => {
+        if (cb.checked) {
+            selected.push(cart[cb.dataset.index]);
+        }
+    });
+
+    return selected;
+}
+
+// ✅ checkout WA cepat
+function checkoutWA() {
+    let items = getSelectedItems();
+
+    if (items.length === 0) {
+        alert("Pilih minimal 1 produk!");
+        return;
+    }
+
+    let message = "Halo, saya ingin order:%0A";
+
+    items.forEach(item => {
+        message += `- ${item.name} (${item.price})%0A`;
+    });
+
+    message += `%0ATotal: ${totalEl.innerText}`;
+
+    window.open(`https://wa.me/6281283326156?text=${message}`, "_blank");
+}
+
+// ✅ checkout form lengkap
+function checkout() {
+    let nama = document.getElementById("nama").value;
+    let alamat = document.getElementById("alamat").value;
+    let nohp = document.getElementById("nohp").value;
+    let metode = document.getElementById("metode").value;
+
+    let items = getSelectedItems();
+
+    if (!nama || !alamat || !nohp) {
+        alert("Isi data dulu!");
+        return;
+    }
+
+    if (items.length === 0) {
+        alert("Pilih minimal 1 produk!");
+        return;
+    }
+
+    let message = "🛒 ORDER BVL%0A%0A";
+    message += `Nama: ${nama}%0A`;
+    message += `No HP: ${nohp}%0A`;
+    message += `Alamat: ${alamat}%0A`;
+    message += `Metode: ${metode}%0A%0A`;
+
+    message += "Detail Pesanan:%0A";
+
+    items.forEach(item => {
+        message += `- ${item.name} (${item.price})%0A`;
+    });
+
+    message += `%0ATotal: ${totalEl.innerText}`;
+
+    window.open(`https://wa.me/6281283326156?text=${message}`, "_blank");
+}
+
+renderCart();
+</script>
+
+</body>
+</html>

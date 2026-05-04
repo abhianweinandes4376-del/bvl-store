@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOMMERCE RESPONSIVE FULL WEBSITE</title>
+    <!-- css file link -->
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href='https://cdn.boxicons.com/3.0.7/fonts/basic/boxicons.min.css' rel='stylesheet'>
+</head>
+<style>
+*{
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'jost', sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10%   ;
+}
+
+.logo img {
+    max-width: 120px; 
+    height: auto;
+}
+.navmenu{
+    display: flex;
+}
+.navmenu a{
+    color: #000000;
+    font-size: 16px;
+    text-transform: capitalize;
+    padding: 10px 20px;
+    font-weight: 400;
+    transition: all .42s ease;
+}
+.navmenu a:hover {
+    color: #ff0000;
+}
+.icon{
+    display: flex;
+    align-items: center;
+}
+.icon i{
+    margin-right: 20px;
+    color: #2c2c2c;
+    font-size: 25px;
+    font-weight: 400;
+    transition: all .42s ease;
+}
+.icon i:hover {
+    transform: scale(1.1);
+    color: #ff3d00;
+}
+#menu-icon {
+    font-size: 35px;
+    color: #000000;
+    z-index: 10001;
+    cursor: pointer;
+}
+section {
+    padding: 5% 10%;
+}
+.main-home {
+    width: 100%;
+    height: 100vh;
+    background-image: url(banner.png);
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    align-items: center;
+}
+.main-text h5 {
+    color: #b0e1af;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.main-text h1 {
+    font-size: 65px;
+    color: #000000;
+    text-transform: capitalize;
+    line-height: 1.1;
+    font-weight: 600;
+    margin: 6px 0 10px;
+}
+.main-text p {
+    font-size: 20px;
+    color: #000000;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+.main-btn   {
+    display: inline-block;
+    color: #111;
+    padding: 12px 25px;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 500;
+    transition: all .42s ease;
+    border: 2px solid #111;
+}
+.main-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+.main-btn i {
+    vertical-align: middle;
+}
+.down-arrow {
+    position: absolute;
+    top: 85%;
+    right: 11%;
+    transform: translateX(-50%);
+}
+.down i {
+    font-size: 30px;
+    color: #2c2c2c;
+    animation: down 1.5s linear infinite;
+    border : 2px solid #2c2c2c;
+    border-radius: 50px;
+    padding : 12px 12px;
+}
+.down:hover i {
+    background-color: #2c2c2c;
+    color: #fff;
+    transition: all .42s ease;
+}
+header.sticky {
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0 0 0 / 10%);
+    padding: 20px 10%;
+}
+.center-text h2{
+    text-align: center;
+    color: #111;
+    font-size: 36px;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+}
+.center-text span {
+    color: #ff3d00;
+}
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+.row {
+    background: #fff;
+    padding: 12px;
+    border-radius: 12px;
+    position: relative;
+    transition: all .3s ease;
+}
+
+.row:hover {
+    transform: translateY(-5px);
+}.row img {
+    width: 100%;
+    height: 300px;       
+    object-fit: cover;  
+    border-radius: 10px;
+}
+.add-cart {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #ff3d00;
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-cart:hover {
+    background: #000;
+}
+
+.restock {
+    background: #ff3d00;
+    color: #fff;
+    font-style: oblique;
+}
+.ratting i {
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ratting i.active {
+    color: gold;
+}
+
+/* CARD PRODUCT */
+.row {
+    position: relative;
+    background: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.row:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.row img {
+    width: 100%;
+    border-radius: 10px;
+    transition: 0.4s ease;
+}
+
+.row:hover img {
+    transform: scale(1.08);
+}
+
+.heart-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.heart-icon i {
+    font-size: 22px;
+    color: #ccc;
+    transition: 0.3s;
+}
+
+.heart-icon i:hover {
+    color: red;
+    transform: scale(1.2);
+}
+
+.ratting i {
+    transition: 0.2s;
+}
+
+.ratting i:hover {
+    transform: scale(1.3);
+}
+
+.add-cart {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #111;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.add-cart::before {
+    content: "";
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+}
+
+.add-cart:hover::before {
+    left: 100%;
+}
+
+.add-cart:hover {
+    background: #ff3d00;
+}
+
+#toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #111;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    max-width: 250px;
+    width: auto;
+    text-align: center;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.3s ease;
+    z-index: 9999;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.navmenu a {
+    position: relative;
+}
+
+.navmenu a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #ff3d00;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.navmenu a:hover::after {
+    width: 100%;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.6s ease;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.products .row img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 768px) {
+
+    #menu-icon {
+        display: block;
+    }
+
+    .navmenu {
+        position: absolute;
+        top: 100%;
+        right: -100%; /* awalnya disembunyikan */
+        width: 250px;
+        height: 100vh;
+        background: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px;
+        transition: 0.4s;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    }
+
+    .navmenu a {
+        display: block;
+        margin: 15px 0;
+        font-size: 18px;
+    }
+
+    /* saat aktif */
+    .navmenu.active {
+        right: 0;
+    }
+}
+
+#menu-icon {
+    display: none;
+}
+
+/* LOVE BUTTON */
+.heart-icon i {
+    font-size: 22px;
+    color: #bbb;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.heart-icon i.loved {
+    color: red;
+    transform: scale(1.2);
+}
+
+/* RATING */
+.ratting i {
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.ratting i:hover {
+    transform: scale(1.3);
+}
+
+.ratting i.active {
+    color: gold;
+}
+
+/* efek hover preview rating */
+.ratting i.hovered {
+    color: orange;
+}
+
+.search-box {
+    position: absolute;
+    top: 100%;
+    right: 10%;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    padding: 8px;
+    width: 200px;
+}
+</style>
+
+<body>
+    <header>
+        <a href="index.html" class="logo"><img src="logo.png" alt=""></a>
+
+        <ul class="navmenu">
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#trending">PRODUCT</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+        <div class="icon">
+            <div class="search-box" id="searchBox">
+    <input type="text" placeholder="Cari produk..." id="searchInput">
+</div>
+            <a href="about.html"><i class="bx bx-user"></i></a>
+            <a href="cart.html"><i class="bx bx-cart"></i></a>
+
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+    </header>
+
+  <section class="main-home" id="home">
+        <div class="main-text">
+            <h5>BVL Collection</h5>
+            <h1>BVL New<br> Collection 2026</h1>
+            <p>Culture,style,outfit</p>
+            <p>Reseller Limited Item</p>
+            <a href="#trending" class="main-btn">shop now <i class='bx  bx-arrow-right'></i> </a>
+        </div>
+        <div class="down-arrow">
+            <a href="#trending" class="down"><i class='bx  bx-arrow-down'></i></a>
+        </div>
+    </section>
+
+
+    <section class="trending-product" id="trending">
+        <div class="center-text">
+            <h2>Our Trending <span>Product</span></h2>
+        </div>
+
+<div class="products">
+  <!-- PRODUCT 1 -->
+  <div class="row">
+    
+    <img src="1.jpg" alt="">
+    <div class="product-text"><h5>sale</h5></div>
+    <div class="heart-icon"><i class='bx bx-heart'></i></div>
+   
+    <div class="ratting" data-rating="0">
+  <i class='bx bx-star' data-value="1"></i>
+  <i class='bx bx-star' data-value="2"></i>
+  <i class='bx bx-star' data-value="3"></i>
+  <i class='bx bx-star' data-value="4"></i>
+  <i class='bx bx-star' data-value="5"></i>
+</div>
+
+    <div class="price">
+      <h4>UNIQLO shirt-BVL</h4>
+      <h3>Rp 299.000</h3>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- PRODUCT 2 -->
+  <div class="row">
+    <img src="2.jpg" alt="">
+    <div class="product-text"><h5>sale</h5></div>
+    <div class="heart-icon"><i class='bx bx-heart'></i></div>
+    
+    <div class="ratting" data-rating="0">
+  <i class='bx bx-star' data-value="1"></i>
+  <i class='bx bx-star' data-value="2"></i>
+  <i class='bx bx-star' data-value="3"></i>
+  <i class='bx bx-star' data-value="4"></i>
+  <i class='bx bx-star' data-value="5"></i>
+</div>
+
+    <div class="price">
+      <h4>CORTEIZ OG ALCATRAZ-BVL</h4>
+      <h3>Rp 450.000</h3> 
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- PRODUCT 3 -->
+  <div class="row">
+     
+    <img src="3.jpg" alt="">
+    <div class="product-text"><h5>sale</h5></div>
+    <div class="heart-icon"><i class='bx bx-heart'></i></div>
+   
+    <div class="ratting" data-rating="0">
+  <i class='bx bx-star' data-value="1"></i>
+  <i class='bx bx-star' data-value="2"></i>
+  <i class='bx bx-star' data-value="3"></i>
+  <i class='bx bx-star' data-value="4"></i>
+  <i class='bx bx-star' data-value="5"></i>
+</div>
+
+    <div class="price">
+      <h4>HODDIE SP5DER OG-BVL</h4>
+      <h3>Rp 550.000</h3>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- PRODUCT 4 -->
+  <div class="row">
+    
+    <img src="4.jpg" alt="">
+    <div class="product-text"><h5>sale</h5></div>
+    <div class="heart-icon"><i class='bx bx-heart'></i></div>
+    
+    <div class="ratting" data-rating="0">
+  <i class='bx bx-star' data-value="1"></i>
+  <i class='bx bx-star' data-value="2"></i>
+  <i class='bx bx-star' data-value="3"></i>
+  <i class='bx bx-star' data-value="4"></i>
+  <i class='bx bx-star' data-value="5"></i>
+</div>
+
+    <div class="price">
+      <h4>NIKE tech fleece-BVL</h4>
+      <h3>Rp 750.000</h3> 
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- PRODUCT 5 -->
+  <div class="row">
+    
+    <img src="5.jpg" alt="">
+    <div class="product-text"><h5>sale</h5></div>
+    <div class="heart-icon"><i class='bx bx-heart'></i></div>
+   
+    <div class="ratting" data-rating="0">
+  <i class='bx bx-star' data-value="1"></i>
+  <i class='bx bx-star' data-value="2"></i>
+  <i class='bx bx-star' data-value="3"></i>
+  <i class='bx bx-star' data-value="4"></i>
+  <i class='bx bx-star' data-value="5"></i>
+</div>
+    
+    <div class="price">
+      <h4>NIKE nocta-BVL</h4>
+      <h3>Rp 900.000</h3>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </div>
+ 
+
+ <!-- PRODUCT 6 -->
+<div class="row">
+  
+  <img src="6.jpg" alt="">
+  <div class="product-text"><h5>sale</h5></div>
+  <div class="heart-icon"><i class='bx bx-heart'></i></div>
+  
+  <div class="ratting" data-rating="0">
+  <i class='bx bx-star' data-value="1"></i>
+  <i class='bx bx-star' data-value="2"></i>
+  <i class='bx bx-star' data-value="3"></i>
+  <i class='bx bx-star' data-value="4"></i>
+  <i class='bx bx-star' data-value="5"></i>
+  </div>
+
+  <div class="price">
+    <h4>CHAMBRE HOODIE-BVL</h4>
+    <h3>Rp 650.000</h3>
+      <button class="add-cart">Add to Cart</button>
+  </div>
+</div>
+
+<!-- PRODUCT 7 -->
+<div class="row">
+
+  <img src="7.jpg" alt="">
+  <div class="product-text"><h5>sale</h5></div>
+  <div class="heart-icon"><i class='bx bx-heart'></i></div>
+  
+  <div class="ratting" data-rating="0">
+  <i class='bx bx-star' data-value="1"></i>
+  <i class='bx bx-star' data-value="2"></i>
+  <i class='bx bx-star' data-value="3"></i>
+  <i class='bx bx-star' data-value="4"></i>
+  <i class='bx bx-star' data-value="5"></i>
+  </div>
+
+  <div class="price">
+    <h4>BALLON PANTS-BVL</h4>
+    <h3>Rp 300.000</h3>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </div>
+
+
+<!-- PRODUCT 8 -->
+<div class="row">
+  
+  <img src="8.jpg" alt="">
+  <div class="product-text"><h5>sale</h5></div>
+  <div class="heart-icon"><i class='bx bx-heart'></i></div>
+  
+  <div class="ratting" data-rating="0">
+  <i class='bx bx-star' data-value="1"></i>
+  <i class='bx bx-star' data-value="2"></i>
+  <i class='bx bx-star' data-value="3"></i>
+  <i class='bx bx-star' data-value="4"></i>
+  <i class='bx bx-star' data-value="5"></i>
+  </div>
+
+  <div class="price">
+    <h4>BAGGY JEANS-BVL</h4>
+    <h3>Rp 350.000</h3>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </div>
+
+<!-- PRODUCT 9 -->
+<div class="row">
+  
+  <img src="9.jpg" alt="">
+  <div class="product-text"><h5>sale</h5></div>
+  <div class="heart-icon"><i class='bx bx-heart'></i></div>
+ 
+  <div class="ratting" data-rating="0">
+  <i class='bx bx-star' data-value="1"></i>
+  <i class='bx bx-star' data-value="2"></i>
+  <i class='bx bx-star' data-value="3"></i>
+  <i class='bx bx-star' data-value="4"></i>
+  <i class='bx bx-star' data-value="5"></i>
+  </div>
+  
+  <div class="price">
+    <h4>JORTS PANTS-BVL</h4>
+    <h3>Rp 320.000</h3>
+      <button class="add-cart">Add to Cart</button>
+  </div>
+ </div>
+
+<!-- PRODUCT 10 -->
+<div class="row">
+  
+  <img src="10.jpg" alt="">
+  <div class="product-text"><h5>sale</h5></div>
+  <div class="heart-icon"><i class='bx bx-heart'></i></div>
+ 
+  <div class="ratting" data-rating="0">
+  <i class='bx bx-star' data-value="1"></i>
+  <i class='bx bx-star' data-value="2"></i>
+  <i class='bx bx-star' data-value="3"></i>
+  <i class='bx bx-star' data-value="4"></i>
+  <i class='bx bx-star' data-value="5"></i>
+  </div>
+
+  <div class="price">
+    <h4>DENIM JEANS-BVL</h4>
+    <h3>Rp 400.000</h3>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </div>
+
+<div class="restock">
+  <h5>SEE YOU SOON WE WILL RESTOCK AGAIN</h5>
+</div>
+  
+    </section>
+   <!-- GANTI BAGIAN <script> KAMU DENGAN INI SAJA -->
+<!-- GANTI BAGIAN <script> KAMU DENGAN INI SAJA -->
+<script>
+// HEADER STICKY
+const header = document.querySelector("header");
+window.addEventListener("scroll", () => {
+    header.classList.toggle("sticky", window.scrollY > 0);
+});
+
+// CART
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// DOM READY
+document.addEventListener("DOMContentLoaded", () => {
+
+    // ✅ ADD TO CART (FIXED)
+    document.querySelectorAll(".add-cart").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation(); // ⛔ biar tidak ikut klik card
+
+            let product = btn.closest(".row");
+
+            let name = product.querySelector("h4").innerText;
+            let price = product.querySelector("h3").innerText;
+            let img = product.querySelector("img").src;
+
+            cart.push({ name, price, img });
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            showToast("Produk ditambahkan ke keranjang 🛒");
+        });
+    });
+
+    // ✅ CLICK KE DETAIL (FIXED)
+    document.querySelectorAll(".row").forEach(card => {
+        card.addEventListener("click", (e) => {
+
+            // ⛔ cegah klik icon, button, dll
+            if (
+                e.target.closest(".add-cart") ||
+                e.target.closest(".heart-icon") ||
+                e.target.closest(".ratting")
+            ) return;
+
+            let name = card.querySelector("h4").innerText;
+            let price = card.querySelector("h3").innerText;
+            let img = card.querySelector("img").src;
+
+            let product = { name, price, img };
+
+            localStorage.setItem("detailProduct", JSON.stringify(product));
+
+            window.location.href = "detail.html";
+        });
+    });
+
+});
+
+// TOAST
+function showToast(message) {
+    let toast = document.getElementById("toast");
+    if (!toast) return;
+
+    toast.innerText = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2000);
+}
+
+// RATING
+document.querySelectorAll(".ratting").forEach((ratingBox, index) => {
+
+    let stars = ratingBox.querySelectorAll("i");
+    let savedRating = localStorage.getItem("rating_" + index);
+
+    if(savedRating){
+        setRating(stars, savedRating);
+    }
+
+    stars.forEach(star => {
+        star.addEventListener("click", () => {
+            let value = star.getAttribute("data-value");
+            setRating(stars, value);
+            localStorage.setItem("rating_" + index, value);
+        });
+    });
+});
+
+function setRating(stars, value){
+    stars.forEach(star => {
+        if(star.getAttribute("data-value") <= value){
+            star.classList.add("active");
+        } else {
+            star.classList.remove("active");
+        }
+    });
+}
+
+// SCROLL ANIMATION
+const fadeEls = document.querySelectorAll(".row");
+
+window.addEventListener("scroll", () => {
+    fadeEls.forEach(el => {
+        let top = el.getBoundingClientRect().top;
+        if(top < window.innerHeight - 50){
+            el.classList.add("show");
+        }
+    });
+});
+
+// MENU MOBILE
+const menuIcon = document.getElementById("menu-icon");
+const navMenu = document.querySelector(".navmenu");
+
+menuIcon.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+    menuIcon.classList.toggle("bx-x");
+});
+
+document.querySelectorAll(".navmenu a").forEach(link => {
+    link.addEventListener("click", () => {
+        navMenu.classList.remove("active");
+    });
+});
+
+// ================= SEARCH TOGGLE =================
+const searchIcon = document.querySelector(".bx-search");
+const searchBox = document.getElementById("searchBox");
+
+ searchIcon.addEventListener("click", (e) => {
+    e.preventDefault();
+    searchBox.style.display = 
+        searchBox.style.display === "block" ? "none" : "block";
+});
+
+// ================= SEARCH FILTER =================
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", () => {
+    let keyword = searchInput.value.toLowerCase();
+
+    document.querySelectorAll(".row").forEach(card => {
+        let name = card.querySelector("h4").innerText.toLowerCase();
+
+        if (name.includes(keyword)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+
+// ================= LOVE BUTTON =================
+document.querySelectorAll(".heart-icon i").forEach((heart, index) => {
+
+    // load state
+    if(localStorage.getItem("love_" + index)){
+        heart.classList.add("loved");
+    }
+
+    heart.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        heart.classList.toggle("loved");
+
+        if(heart.classList.contains("loved")){
+            localStorage.setItem("love_" + index, true);
+        } else {
+            localStorage.removeItem("love_" + index);
+        }
+    });
+});
+
+// ================= RATING HOVER EFFECT =================
+document.querySelectorAll(".ratting").forEach((ratingBox, index) => {
+
+    let stars = ratingBox.querySelectorAll("i");
+
+    let savedRating = localStorage.getItem("rating_" + index);
+    if(savedRating){
+        setRating(stars, savedRating);
+    }
+
+    stars.forEach(star => {
+
+        // hover preview
+        star.addEventListener("mouseover", () => {
+            let val = star.getAttribute("data-value");
+
+            stars.forEach(s => {
+                if(s.getAttribute("data-value") <= val){
+                    s.classList.add("hovered");
+                }
+            });
+        });
+
+        star.addEventListener("mouseout", () => {
+            stars.forEach(s => s.classList.remove("hovered"));
+        });
+
+        // klik
+        star.addEventListener("click", () => {
+            let value = star.getAttribute("data-value");
+            setRating(stars, value);
+            localStorage.setItem("rating_" + index, value);
+        });
+
+    });
+});
+
+function setRating(stars, value){
+    stars.forEach(star => {
+        if(star.getAttribute("data-value") <= value){
+            star.classList.add("active");
+        } else {
+            star.classList.remove("active");
+        }
+    });
+}
+</script>
+
+        <div id="toast"></div>
+  </body>
+</html>

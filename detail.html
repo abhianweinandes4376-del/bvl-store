@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detail Produk</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Jost', sans-serif;
+    margin: 0;
+    background: #f5f5f5;
+    color: #111;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 10%;
+    background:#fff;
+    border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    transition:0.3s;
+}
+
+/* efek saat scroll */
+.header.scrolled{
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* logo */
+.logo img{
+    width:110px;
+}
+
+/* menu */
+.navmenu{
+    display:flex;
+    gap:30px;
+}
+
+.navmenu a{
+    text-decoration:none;
+    color:#111;
+    font-size:14px;
+    font-weight:500;
+    position:relative;
+    transition:0.3s;
+}
+
+/* underline animasi */
+.navmenu a::after{
+    content:"";
+    position:absolute;
+    width:0%;
+    height:2px;
+    background:#111;
+    left:0;
+    bottom:-5px;
+    transition:0.3s;
+}
+
+.navmenu a:hover::after{
+    width:100%;
+}
+
+.navmenu a:hover{
+    color:#000;
+}
+
+/* CONTAINER */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 50px 10%;
+}
+
+/* IMAGE */
+.product-img {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.product-img img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* DETAIL */
+.detail {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.badge {
+    display: inline-block;
+    background: #ff3d00;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.detail h2 {
+    margin: 10px 0;
+    font-size: 28px;
+}
+
+.price {
+    font-size: 24px;
+    color: #ff3d00;
+    margin-bottom: 15px;
+}
+
+.desc {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* SIZE */
+.size-box {
+    margin-bottom: 20px;
+}
+
+.size-box button {
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    background: #fff;
+    margin-right: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.size-box button:hover,
+.size-box button.active {
+    background: #111;
+    color: #fff;
+}
+
+/* BUTTON */
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.cart-btn {
+    background: #111;
+    color: #fff;
+}
+
+.cart-btn:hover {
+    background: #ff3d00;
+}
+
+.wa-btn {
+    background: #25D366;
+    color: #fff;
+}
+
+.wa-btn:hover {
+    background: #1da851;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <a href="index.html" class="logo">
+        <img src="logo.png" alt="">
+    </a>
+
+    <nav class="navmenu">
+        <a href="index.html">HOME</a>
+        <a href="index.html#trending">PRODUCT</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+    </nav>
+</header>
+
+<div class="container">
+
+    <!-- IMAGE -->
+    <div class="product-img">
+        <img id="img">
+    </div>
+
+    <!-- DETAIL -->
+    <div class="detail">
+        <span class="badge">BEST SELLER</span>
+
+        <h2 id="name"></h2>
+        <div class="price" id="price"></div>
+
+        <p class="desc">
+            Produk original BVL dengan kualitas premium. 
+            Cocok untuk gaya streetwear modern dan daily outfit 🔥
+        </p>
+
+        <!-- SIZE -->
+        <div class="size-box">
+            <p>Pilih Size:</p>
+            <button onclick="selectSize(this)">S</button>
+            <button onclick="selectSize(this)">M</button>
+            <button onclick="selectSize(this)">L</button>
+            <button onclick="selectSize(this)">XL</button>
+        </div>
+
+        <!-- BUTTON -->
+        <div class="btn-group">
+            <button class="btn cart-btn" onclick="addToCart()">Add to Cart</button>
+            <button class="btn wa-btn" onclick="buyWA()">Beli via WhatsApp</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+let product = JSON.parse(localStorage.getItem("detailProduct"));
+
+// tampilkan data
+document.getElementById("name").innerText = product.name;
+document.getElementById("price").innerText = product.price;
+document.getElementById("img").src = product.img;
+
+let selectedSize = "";
+
+// pilih size
+function selectSize(btn){
+    document.querySelectorAll(".size-box button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    selectedSize = btn.innerText;
+}
+
+// add to cart
+function addToCart(){
+    if(!selectedSize){
+        alert("Pilih size dulu!");
+        return;
+    }
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({
+        ...product,
+        size: selectedSize
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Produk masuk keranjang 🛒");
+}
+
+// beli via WA
+function buyWA(){
+    if(!selectedSize){
+        alert("Pilih size dulu!");
+        return;
+    }
+
+    let message = `Halo, saya ingin beli:%0A
+${product.name}%0A
+Harga: ${product.price}%0A
+Size: ${selectedSize}`;
+
+    window.open(`https://wa.me/6281283326156?text=${message}`);
+}
+</script>
+
+</body>
+</html>
